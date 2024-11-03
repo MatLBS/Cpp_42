@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 15:55:18 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/01 17:41:20 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/03 15:45:46 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ int	main(int ac, char **av)
 	try
 	{
 		Bureaucrat Yann("Yann", grade);
-		std::cout << "Grade is " << Yann << std::endl;
+		std::cout << Yann << std::endl;
 		Yann.demotion();
-		std::cout << "Grade is " << Yann << std::endl;
+		std::cout << Yann << std::endl;
 		Bureaucrat Dom("Dom", grade2);
-		std::cout << "Grade is " << Dom << std::endl;
+		std::cout << Dom << std::endl;
 		Dom.promotion();
-		std::cout << "Grade is " << Dom << std::endl;
+		std::cout << Dom << std::endl;
 	}
 	catch(const  Bureaucrat::GradeTooHighException & e)
 	{

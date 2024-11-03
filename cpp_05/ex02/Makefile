@@ -6,7 +6,7 @@
 #    By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/01 15:54:40 by matle-br          #+#    #+#              #
-#    Updated: 2024/11/03 16:41:17 by matle-br         ###   ########.fr        #
+#    Updated: 2024/11/03 18:12:09 by matle-br         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ ROUGE = \033[1;31m
 
 SRC_DIR =	src/main.cpp \
 			src/Bureaucrat.cpp \
-			src/Form.cpp
+			src/AForm.cpp \
+			src/ShrubberyCreationForm.cpp \
+
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 15:55:30 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/01 17:33:26 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/03 16:52:19 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ Bureaucrat &	Bureaucrat::operator=(Bureaucrat const & src)
 	if (this != &src)
 	{
 		this->_grade = src.getGrade();
-		this->_name = src.getName();
 	}
 	return (*this);
 }
@@ -43,7 +42,7 @@ std::string Bureaucrat::getName() const
 	return (this->_name);
 }
 
-int	Bureaucrat::getGrade() const
+unsigned int	Bureaucrat::getGrade() const
 {
 	return (this->_grade);
 }
@@ -52,24 +51,26 @@ void	Bureaucrat::promotion(void)
 {
 	this->_grade -= 1;
 	testGrade();
+	std::cout << this->getName() << " got a promotion." << std::endl;
 }
 
 void	Bureaucrat::demotion(void)
 {
 	this->_grade += 1;
 	testGrade();
+	std::cout << this->getName() << " got a demotion." << std::endl;
 }
 
 void	Bureaucrat::testGrade() const
 {
 	if (getGrade() < 1)
-		throw GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	if (getGrade() > 150)
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 }
 
 std::ostream &operator<<(std::ostream & o, Bureaucrat const & i)
 {
-	o << i.getGrade();
+	o << i.getName() << ", bureaucrat grade " << i.getGrade();
 	return (o);
 }

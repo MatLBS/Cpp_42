@@ -1,43 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 15:55:41 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/03 19:43:11 by matle-br         ###   ########.fr       */
+/*   Created: 2024/11/03 15:31:21 by matle-br          #+#    #+#             */
+/*   Updated: 2024/11/03 19:49:01 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREAUCRAT_HPP
-# define BUREAUCRAT_HPP
+#ifndef FORM_HPP
+# define FORM_HPP
 
 # include <iostream>
 # include <cstring>
 # include <cstdlib>
-# include "Form.hpp"
+# include <fstream>
+# include "Bureaucrat.hpp"
 
-class Form;
+# define MIN_GRADE 150
+# define MAX_GRADE 1
 
-class Bureaucrat {
+class Bureaucrat;
+
+class AForm {
 
 public:
 
-	Bureaucrat(void);
-	Bureaucrat(Bureaucrat const & copy);
-	Bureaucrat & operator=(Bureaucrat const & src);
-	~Bureaucrat(void);
+	AForm(void);
+	AForm(AForm const & copy);
+	AForm & operator=(AForm const & src);
+	~AForm(void);
 
-	Bureaucrat(std::string name, int garde);
-
-	std::string		getName() const;
-	unsigned int	getGrade() const;
-	void			promotion();
-	void			demotion();
-
+	AForm(std::string name, unsigned int min_sign, unsigned int min_exec);
+	void			beSigned(Bureaucrat const & bureaucrat);
 	void			testGrade() const;
-	void			signForm(Form & form);
+	virtual	void	executed() = 0;
+
+	std::string	getName() const;
+	bool		getIsSigned() const;
+	int			getSign() const;
+	int			getExec() const;
+
 
 	class GradeTooHighException : public std::exception
 	{
@@ -57,14 +62,16 @@ public:
 			}
 	};
 
-
-private:
+protected:
 
 	const std::string	_name;
-	unsigned int		_grade;
+	bool				_signed;
+	unsigned int		_min_to_sign;
+	unsigned int		_min_to_exec;
 
 };
 
-std::ostream &operator<<(std::ostream & o, Bureaucrat const & i);
+std::ostream &operator<<(std::ostream & o, AForm const & i);
+
 
 #endif

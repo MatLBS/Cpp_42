@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 15:55:41 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/01 17:38:37 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/03 16:51:09 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ public:
 
 	Bureaucrat(std::string name, int garde);
 
-	std::string	getName() const;
-	int			getGrade() const;
-	void		promotion();
-	void		demotion();
+	std::string		getName() const;
+	unsigned int	getGrade() const;
+	void			promotion();
+	void			demotion();
 
 	void	testGrade() const;
 
@@ -56,8 +56,8 @@ public:
 
 private:
 
-	std::string	_name;
-	int			_grade;
+	const std::string	_name;
+	unsigned int		_grade;
 
 };
 

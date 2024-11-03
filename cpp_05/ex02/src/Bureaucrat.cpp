@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 15:55:30 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/03 19:46:09 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/03 19:48:31 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,22 @@ void	Bureaucrat::testGrade() const
 		throw Bureaucrat::GradeTooLowException();
 }
 
-void	Bureaucrat::signForm(Form & form)
+void	Bureaucrat::signForm(AForm & form)
 {
 	try
 	{
 		form.beSigned(*this);
 		std::cout << this->getName() << " signed " << form.getName() << std::endl;
 	}
-	catch(const  Form::GradeTooLowException & e)
+	catch(const  AForm::GradeTooLowException & e)
 	{
 		std::cout << this->getName() << " couldn't signed " << form.getName() << " because the grade was too low." << std::endl;
 	}
+}
+
+void	Bureaucrat::executeForm(AForm const & form) const
+{
+	(void)form;
 }
 
 std::ostream &operator<<(std::ostream & o, Bureaucrat const & i)

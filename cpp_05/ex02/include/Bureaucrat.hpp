@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 15:55:41 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/03 19:43:11 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/03 19:48:15 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <iostream>
 # include <cstring>
 # include <cstdlib>
-# include "Form.hpp"
+# include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 
@@ -29,7 +29,7 @@ public:
 	Bureaucrat & operator=(Bureaucrat const & src);
 	~Bureaucrat(void);
 
-	Bureaucrat(std::string name, int garde);
+	Bureaucrat(std::string name, int grade);
 
 	std::string		getName() const;
 	unsigned int	getGrade() const;
@@ -37,7 +37,8 @@ public:
 	void			demotion();
 
 	void			testGrade() const;
-	void			signForm(Form & form);
+	void			signForm(AForm & form);
+	void			executeForm(AForm const & form) const;
 
 	class GradeTooHighException : public std::exception
 	{
