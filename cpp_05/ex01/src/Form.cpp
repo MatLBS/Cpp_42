@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:48:30 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/03 19:42:21 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/04 10:46:14 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ bool	Form::getIsSigned() const
 	return (this->_signed);
 }
 
-int	Form::getSign() const
+unsigned int	Form::getSign() const
 {
 	return (this->_min_to_sign);
 }
 
-int	Form::getExec() const
+unsigned int	Form::getExec() const
 {
 	return (this->_min_to_exec);
 }

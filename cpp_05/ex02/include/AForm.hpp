@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:31:21 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/03 19:49:01 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:57:08 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <cstring>
 # include <cstdlib>
 # include <fstream>
+# include <ctime>
 # include "Bureaucrat.hpp"
 
 # define MIN_GRADE 150
@@ -36,12 +37,13 @@ public:
 	AForm(std::string name, unsigned int min_sign, unsigned int min_exec);
 	void			beSigned(Bureaucrat const & bureaucrat);
 	void			testGrade() const;
-	virtual	void	executed() = 0;
+	virtual	void	to_execute() const = 0;
+	void			execute(Bureaucrat const & executor) const;
 
 	std::string	getName() const;
-	bool		getIsSigned() const;
-	int			getSign() const;
-	int			getExec() const;
+	bool			getIsSigned() const;
+	unsigned int	getSign() const;
+	unsigned int	getExec() const;
 
 
 	class GradeTooHighException : public std::exception
@@ -59,6 +61,15 @@ public:
 			virtual const char* what() const throw()
 			{
 				return ("Grade is too low");
+			}
+	};
+
+	class CantExecute : public std::exception
+	{
+		public:
+			virtual const char* what() const throw()
+			{
+				return ("form is not signed");
 			}
 	};
 

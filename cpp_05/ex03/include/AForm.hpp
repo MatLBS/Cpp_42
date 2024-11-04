@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:31:21 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/04 10:45:56 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:58:31 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <iostream>
 # include <cstring>
 # include <cstdlib>
+# include <fstream>
+# include <ctime>
 # include "Bureaucrat.hpp"
 
 # define MIN_GRADE 150
@@ -23,18 +25,20 @@
 
 class Bureaucrat;
 
-class Form {
+class AForm {
 
 public:
 
-	Form(void);
-	Form(Form const & copy);
-	Form & operator=(Form const & src);
-	~Form(void);
+	AForm(void);
+	AForm(AForm const & copy);
+	AForm & operator=(AForm const & src);
+	virtual ~AForm(void);
 
-	Form(std::string name, unsigned int min_sign, unsigned int min_exec);
-	void	beSigned(Bureaucrat & bureaucrat);
-	void	testGrade() const;
+	AForm(std::string name, unsigned int min_sign, unsigned int min_exec);
+	void			beSigned(Bureaucrat const & bureaucrat);
+	void			testGrade() const;
+	virtual	void	to_execute() const = 0;
+	void			execute(Bureaucrat const & executor) const;
 
 	std::string	getName() const;
 	bool			getIsSigned() const;
@@ -60,7 +64,16 @@ public:
 			}
 	};
 
-private:
+	class CantExecute : public std::exception
+	{
+		public:
+			virtual const char* what() const throw()
+			{
+				return ("form is not signed");
+			}
+	};
+
+protected:
 
 	const std::string	_name;
 	bool				_signed;
@@ -69,7 +82,7 @@ private:
 
 };
 
-std::ostream &operator<<(std::ostream & o, Form const & i);
+std::ostream &operator<<(std::ostream & o, AForm const & i);
 
 
 #endif

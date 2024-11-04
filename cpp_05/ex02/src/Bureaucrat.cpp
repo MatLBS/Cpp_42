@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 15:55:30 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/03 19:48:31 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:57:28 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,25 @@ void	Bureaucrat::signForm(AForm & form)
 	}
 	catch(const  AForm::GradeTooLowException & e)
 	{
-		std::cout << this->getName() << " couldn't signed " << form.getName() << " because the grade was too low." << std::endl;
+		std::cout << this->getName() << " couldn't signed " << form.getName() << " because the lowest grde to sign it is " << form.getSign() << std::endl;
 	}
 }
 
 void	Bureaucrat::executeForm(AForm const & form) const
 {
-	(void)form;
+	try
+	{
+		form.execute(*this);
+		std::cout << this->_name << " executed form: " << form.getName() << std::endl;
+	}
+	catch(const AForm::GradeTooLowException & e)
+	{
+		std::cout << this->_name << " can't execute form: " << form.getName() << " because " << e.what() << std::endl;
+	}
+	catch(const AForm::CantExecute & e)
+	{
+		std::cout << this->_name << " can't execute form: " << form.getName() << " because " << e.what() << std::endl;
+	}
 }
 
 std::ostream &operator<<(std::ostream & o, Bureaucrat const & i)

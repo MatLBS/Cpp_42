@@ -6,7 +6,7 @@
 #    By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/01 15:54:40 by matle-br          #+#    #+#              #
-#    Updated: 2024/11/04 10:55:23 by matle-br         ###   ########.fr        #
+#    Updated: 2024/11/04 12:51:54 by matle-br         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC_DIR =	src/main.cpp \
 			src/ShrubberyCreationForm.cpp \
 			src/PresidentialPardonForm.cpp \
 			src/RobotomyRequestForm.cpp \
+			src/Intern.cpp \
 
 
 all: $(NAME)

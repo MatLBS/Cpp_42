@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 15:55:18 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/03 16:58:55 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/04 09:45:35 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	main(int ac, char **av)
 		std::cout << Dom << std::endl;
 		Form test("Cerfa 80", 75, 75);
 		std::cout << test << std::endl;
-		test.beSigned(Yann);
 		Yann.signForm(test);
 	}
 	catch(const  Bureaucrat::GradeTooHighException & e)
