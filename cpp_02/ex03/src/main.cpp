@@ -6,21 +6,24 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:54:10 by matle-br          #+#    #+#             */
-/*   Updated: 2024/10/01 08:38:51 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/12 11:07:28 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Fixed.hpp"
 #include "../include/Point.hpp"
+#include <sstream>
+#include <cstdio>
+#define POINT "\033[0;35m"
 
 int	main(void)
 {
-	Point A(3, 0);
+	Point A(0, 0);
 	Point B(0, 5);
-	Point C(5, 6);
-	Point point(2, 7);
-	Point point2(3, 4);
-	Point point3(5, 6);
+	Point C(5, 0);
+	Point point(4, 1);
+	Point point2(4, 1.005);
+	Point point3(4, 0.9);
 
 	std::cout << A << std::endl;
 	std::cout << B << std::endl;
@@ -61,3 +64,45 @@ int	main(void)
 
 	return (0);
 }
+
+
+// int	main( void ) {
+// 	Point a;
+// 	Point b(0, 5);
+// 	Point c(5, 0);
+
+// 	float x[] = {4, 4, 4, 4, 4, 4, 4, 4, 4, 4};
+// 	float y[] = {1, 1.005, 1.004, 1.003, 1.002, 1.001, 1.0009, 1.0008, 1.0007, 1.0006};
+// 	float h[] = {0.99994, 0.99995, 0.99996, 0.99997, 0.99998, 0.99999, 0.999991, 0.999992, 0.9999995, 0.9999994, };
+// 	float z[] = {0.0099, 0.0098, 0.0097, 0.0096, 0.0095, 0.0094, 0.0091, 0.00000009, -0.0094, -0.00094};
+// 	size_t size = sizeof(x) / sizeof(x[0]);
+// 	std::cout << "size: " << size << std::endl;
+// 	for(size_t i = 0; i < size; ++i)
+// 	{
+// 		Point p(x[i], y[i]);
+// 		std::cout << "Point [ " << x[i] << " , " << y[i] << " ]" << std::endl;
+// 		if (bsp(a, b, c, p))
+// 			std::cout << "YES, your point is within the triangle!" << std::endl;
+// 		else
+// 			std::cout << "NO, your point is not within the triangle!" << std::endl;
+// 	}
+// 	for(size_t i = 0; i < size; ++i)
+// 	{
+// 		Point p(x[i], h[i]);
+// 		std::cout << "Point [ " << x[i] << " , " << h[i] << " ]" << std::endl;
+// 		if (bsp(a, b, c, p))
+// 			std::cout << "YES, your point is within the triangle!" << std::endl;
+// 		else
+// 			std::cout << "NO, your point is not within the triangle!" << std::endl;
+// 	}
+// 	for(size_t i = 0; i < size; ++i)
+// 	{
+// 		Point p(x[i], z[i]);
+// 		std::cout << "Point [ " << x[i] << " , " << z[i] << " ]" << std::endl;
+// 		if (bsp(a, b, c, p))
+// 			std::cout << "YES, your point is within the triangle!" << std::endl;
+// 		else
+// 			std::cout << "NO, your point is not within the triangle!" << std::endl;
+// 	}
+// 	return (0);
+// }

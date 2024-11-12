@@ -6,11 +6,11 @@
 #    By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/01 15:54:40 by matle-br          #+#    #+#              #
-#    Updated: 2024/11/12 10:05:28 by matle-br         ###   ########.fr        #
+#    Updated: 2024/11/12 10:05:35 by matle-br         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = identify
+NAME = convert
 
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -g3
@@ -19,7 +19,7 @@ RM = rm -f
 ROUGE = \033[1;31m
 
 SRC_DIR =	src/main.cpp \
-			src/Serialize.cpp \
+			src/scalar.cpp \
 
 all: $(NAME)
 

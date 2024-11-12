@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:17:39 by matle-br          #+#    #+#             */
-/*   Updated: 2024/10/01 08:33:35 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/12 11:41:16 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ float	Point::getX(void) const
 
 float	Point::getY(void) const
 {
+	// std::cout << "y = " << this->_y.getRawBits() << std::endl;
 	return (this->_y.getRawBits());
 }
 

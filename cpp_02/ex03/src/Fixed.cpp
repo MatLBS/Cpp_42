@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 15:26:25 by matle-br          #+#    #+#             */
-/*   Updated: 2024/10/03 14:48:31 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/12 11:49:35 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ Fixed::Fixed(Fixed const &copy)
 
 Fixed::Fixed(const int nb)
 {
-	// std::cout << "Int constructor called" << std::endl;
+	std::cout << "Int constructor called" << std::endl;
 	this->_n = nb * (1 << this->_bits);
 	return ;
 }
