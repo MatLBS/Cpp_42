@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 10:07:05 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/12 18:08:40 by matle-br         ###   ########.fr       */
+/*   Created: 2024/11/12 17:42:30 by matle-br          #+#    #+#             */
+/*   Updated: 2024/11/12 19:11:55 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WHATEVER_HPP
-# define WHATEVER_HPP
+#ifndef ARRAY_HPP
+# define ARRAY_HPP
 
 # include <iostream>
 # include <iomanip>
@@ -24,23 +24,36 @@
 # include <typeinfo>
 
 template <typename T>
-T	max(T const & x, T const & y)
-{
-	return(x>y ? x : y);
-}
+class Array {
 
-template <typename T>
-T	min(T const & x, T const & y)
-{
-	return(x<y ? x : y);
-}
+public:
 
-template <typename T>
-void	swap(T & x, T & y)
-{
-	T temp = x;
-	x = y;
-	y = temp;
-}
+	Array(void);
+	Array(unsigned int n);
+	// Array(Array const & copy);
+	// Array &	operator=(Array const & src);
+	~Array(void);
+
+	T at(int index);
+	unsigned int	size(void);
+
+	class IndexOutOfBounds : public std::exception
+	{
+		public:
+			virtual const char* what() const throw()
+			{
+				return ("Index is out of bounds.");
+			}
+	};
+
+
+private:
+	T				*_array;
+	unsigned int	_len;
+
+
+};
+
+# include "../src/Array.tpp"
 
 #endif

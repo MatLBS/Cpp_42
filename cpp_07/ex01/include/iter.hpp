@@ -6,9 +6,12 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:52:08 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/12 14:25:15 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/12 18:08:18 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef ITER_HPP
+# define ITER_HPP
 
 # include <iostream>
 # include <iomanip>
@@ -20,9 +23,15 @@
 # include <ctime>
 # include <typeinfo>
 
-template <typename T>
-void	iter(T * adress, size_t len, void (*f)(T &))
+template <typename T, typename U>
+void	iter(T * adress, U len, void (*f)(T &))
 {
-	for (size_t i = 0; i < len; i++)
+	int	i;
+
+	for (i = 0; i < len; i++)
 		f(adress[i]);
+	if (i == len)
+		std::cout << std::endl;
 }
+
+#endif
