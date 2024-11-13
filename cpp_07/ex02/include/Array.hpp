@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:42:30 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/12 19:11:55 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/13 15:00:51 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,20 @@
 # include <ctime>
 # include <typeinfo>
 
-template <typename T>
+template <typename T = int>
 class Array {
 
 public:
 
 	Array(void);
 	Array(unsigned int n);
-	// Array(Array const & copy);
-	// Array &	operator=(Array const & src);
+	Array(Array const & copy);
+	Array &	operator=(Array const & src);
 	~Array(void);
 
-	T at(int index);
-	unsigned int	size(void);
+	unsigned int	size(void) const;
+	T &			operator[](int index);
+
 
 	class IndexOutOfBounds : public std::exception
 	{

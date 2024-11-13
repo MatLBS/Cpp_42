@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:47:36 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/12 19:14:11 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/13 15:03:39 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,32 @@
 
 template <typename T>
 Array<T>::Array(void): _len(0) {
-	// std::cout << "Constructor default called." << std::endl;
+	this->_array = NULL;
 }
 
 template <typename T>
-Array<T>::Array(unsigned int n): _len(0)
+Array<T>::Array(unsigned int n): _len(n)
 {
-	// std::cout << "Constructor int called." << std::endl;
 	this->_array = new T[n];
-	for (unsigned int i = 0; i < n; i++)
-		_array[i] = 42;
+}
+
+template <typename T>
+Array<T>::Array(Array const & copy)
+{
+	*this = copy;
+}
+
+template <typename T>
+Array<T> &	Array<T>::operator=(Array const & src)
+{
+	if (this != &src)
+	{
+		this->_len = src.size();
+		this->_array = new T[src.size()];
+		for (unsigned int i = 0; i < src.size(); i++)
+			this->_array[i] = src._array[i];
+	}
+	return *this;
 }
 
 template <typename T>
@@ -33,23 +49,15 @@ Array<T>::~Array(void)
 }
 
 template <typename T>
-T	Array<T>::at(int index)
+unsigned int Array<T>::size(void) const
 {
-	std::cout << index << std::endl;
-	std::cout << this->size() << std::endl;
-	std::cout << this->_array[4] << std::endl;
-	if (index < 0 || index >= (int)this->size())
-		throw Array::IndexOutOfBounds();
-	return (this->_array[index]);
+	return this->_len;
 }
 
 template <typename T>
-unsigned int Array<T>::size(void)
+T& Array<T>::operator[](int index)
 {
-	for (int i = 0; this->_array[i]; i++)
-	{
-		if (this->_array[i])
-			this->_len++;
-	}
-	return this->_len;
+	if (index < 0 || index >= (int)this->size())
+		throw Array::IndexOutOfBounds();
+	return this->_array[index];
 }
