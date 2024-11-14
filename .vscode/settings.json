@@ -53,6 +53,12 @@
 		"stdexcept": "cpp",
 		"streambuf": "cpp",
 		"typeinfo": "cpp",
-		"*.tpp": "cpp"
+		"*.tpp": "cpp",
+		"unordered_set": "cpp",
+		"forward_list": "cpp",
+		"list": "cpp",
+		"regex": "cpp",
+		"valarray": "cpp",
+		"stacktrace": "cpp"
 	}
 }
