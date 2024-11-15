@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 12:33:11 by matle-br          #+#    #+#             */
-/*   Updated: 2024/10/01 16:42:14 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/15 13:32:06 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ DiamondTrap::DiamondTrap(void): ClapTrap(), ScavTrap(), FragTrap()
 {
 	std::cout << "Default DiamondTrap constructor called" << std::endl;
 	this->_Hit_points = this->FragTrap::_Hit_points;
-	this->_Energy_points = this->ScavTrap::_Energy_points;
+	this->_Energy_points = this->ScavTrap::energy_points_scav;
 	this->_Attack_points = this->FragTrap::_Attack_points;
+
 	return ;
 }
 
@@ -25,13 +26,13 @@ DiamondTrap::DiamondTrap(std::string name): ClapTrap(name + "_clap_name"), ScavT
 {
 	std::cout << "Parametric DiamondTrap constructor called for " << name << std::endl;
 	this->_Hit_points = FragTrap::_Hit_points;
-	this->_Energy_points = ScavTrap::_Energy_points;
+	this->_Energy_points = this->ScavTrap::energy_points_scav;
 	this->_Attack_points = FragTrap::_Attack_points;
 	this->_name = name;
 
-	// std::cout << "Hit_points = " << this->_Hit_points << std::endl;
-	// std::cout << "Energy_points = " << this->_Energy_points << std::endl;
-	// std::cout << "attack_damages = " << this->_Attack_points << std::endl;
+	std::cout << "Hit_points = " << this->_Hit_points << std::endl;
+	std::cout << "Energy_points = " << this->_Energy_points << std::endl;
+	std::cout << "attack_damages = " << this->_Attack_points << std::endl;
 
 	return ;
 }

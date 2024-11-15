@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:49:28 by matle-br          #+#    #+#             */
-/*   Updated: 2024/09/27 17:40:51 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/15 13:29:43 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ public:
 
 	void	guardGate(void);
 	void	attack(const std::string& target);
+
+	static int	energy_points_scav;
 
 private:
 

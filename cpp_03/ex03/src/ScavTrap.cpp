@@ -6,11 +6,13 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:52:37 by matle-br          #+#    #+#             */
-/*   Updated: 2024/10/01 16:26:29 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/15 13:30:05 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ScavTrap.hpp"
+
+int	ScavTrap::energy_points_scav = 50;
 
 ScavTrap::ScavTrap(void): ClapTrap()
 {
