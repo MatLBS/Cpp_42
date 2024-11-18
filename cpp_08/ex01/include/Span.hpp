@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:41:55 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/18 11:59:23 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:01:23 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <cmath>
 # include <cstdlib>
 # include <vector>
+# include <algorithm>
 
 class Span {
 
@@ -34,7 +35,7 @@ public:
 	Span(unsigned int N);
 
 	void	addNumber(int nb);
-	void	fill(int nb);
+	void	fill(int nb, int nb2);
 	int		shortestSpan();
 	int		longestSpan();
 
