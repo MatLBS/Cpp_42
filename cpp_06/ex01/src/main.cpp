@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:07:53 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/07 17:24:25 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/18 11:22:23 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 int	main(int ac, char **av)
 {
-	if (ac == 2)
+	if (ac == 3)
 	{
-		Data	nb;
+		Data	data;
 
-		nb.nb = std::atoi(av[1]);
-		Data	*new_nb = Serialize::deserialize(Serialize::serialize(&nb));
-		std::cout << new_nb->nb << std::endl;
+		data.nb = std::atoi(av[1]);
+		data.str = av[2];
+		Data	*new_data = Serialize::deserialize(Serialize::serialize(&data));
+		std::cout << new_data->nb << std::endl;
+		std::cout << new_data->str << std::endl;
 		return (0);
 	}
-	std::cout << "Usage: ./serialize [number]" << std::endl;
+	std::cout << "Usage: ./serialize [number] [string]" << std::endl;
 	return (0);
 }

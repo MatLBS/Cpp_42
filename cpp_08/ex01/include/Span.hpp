@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:41:55 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/15 16:59:33 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/18 11:59:23 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ public:
 
 	void	addNumber(int nb);
 	void	fill(int nb);
-	int	shortestSpan();
-	int	longestSpan();
+	int		shortestSpan();
+	int		longestSpan();
 
 	class TooManyNumbers : public std::exception
 	{

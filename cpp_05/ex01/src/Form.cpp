@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:48:30 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/04 10:46:14 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/18 15:00:59 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,22 @@ Form::Form(void): _name("Default"), _signed(false), _min_to_sign(MIN_GRADE), _mi
 
 Form::Form(std::string name, unsigned int min_sign, unsigned int min_exec): _name(name), _signed(false), _min_to_sign(min_sign), _min_to_exec(min_exec)
 {
+	// this->_min_to_exec = min_exec;
+	// this->_min_to_sign = min_sign;
 	testGrade();
 }
 
-Form::Form(Form const & copy)
+Form::Form(Form const & copy): _name(copy.getName() + "_copy"), _min_to_sign(copy.getSign()), _min_to_exec(copy.getExec())
 {
 	*this = copy;
 }
 
 Form &	Form::operator=(Form const & src)
 {
+	(void)src;
 	if (this != &src)
 	{
-		this->_min_to_exec = src.getExec();
-		this->_min_to_sign = src.getSign();
+		this->_signed = src.getIsSigned();
 	}
 	return (*this);
 }

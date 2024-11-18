@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 15:55:30 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/04 15:57:28 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/18 10:41:48 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	Bureaucrat::signForm(AForm & form)
 	}
 	catch(const  AForm::GradeTooLowException & e)
 	{
-		std::cout << this->getName() << " couldn't signed " << form.getName() << " because the lowest grde to sign it is " << form.getSign() << std::endl;
+		std::cout << this->getName() << " couldn't signed " << form.getName() << " because the lowest grade to sign it is " << form.getSign() << std::endl;
 	}
 }
 

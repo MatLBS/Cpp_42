@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:42:07 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/15 17:31:51 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:15:10 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ void	Span::addNumber(int nb)
 
 void	Span::fill(int nb)
 {
+	// this->_tab = this->_size;
 	std::cout << "bonjour" << std::endl;
 	std::cout << this->_size << std::endl;
-	std::cout << this->_tab.begin() << std::endl;
-	std::fill(this->_tab.begin(), this->_tab.begin() + this->_size - 1, nb);
+	// std::cout << this->_tab.begin() << std::endl;
+	std::fill(this->_tab.begin(), this->_tab.begin() + 5, nb);
+	std::cout << this->_tab.size() << std::endl;
 }
 
 int	Span::shortestSpan(void)

@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 10:34:55 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/06 12:40:38 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/18 11:18:09 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 class ScalarConverter {
 
 public:
-
 
 	static void *	convert(std::string test);
 

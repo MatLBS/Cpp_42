@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:31:21 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/04 10:45:56 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:57:39 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ private:
 
 	const std::string	_name;
 	bool				_signed;
-	unsigned int		_min_to_sign;
-	unsigned int		_min_to_exec;
+	const unsigned int		_min_to_sign;
+	const unsigned int		_min_to_exec;
 
 };
 

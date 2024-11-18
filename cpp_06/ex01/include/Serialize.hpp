@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:07:50 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/07 09:44:35 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/18 11:19:22 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 
 typedef struct s_Data
 {
-	int	nb;
+	int			nb;
+	std::string	str;
 }	Data;
 
 class Serialize {

@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:41:12 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/15 17:26:29 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:02:14 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int main()
 	try
 	{
 		sp3.fill(6);
+		// std::cout << sp3._tab.size() << std::endl;
 		// for (int i = 0; i < 11000; i++)
 		// 	sp3.addNumber(rand()%500 + 1);
 		std::cout << sp3.longestSpan() << std::endl;
