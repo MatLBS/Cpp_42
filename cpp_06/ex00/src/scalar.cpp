@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 10:34:45 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/06 14:23:42 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/19 10:17:29 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ ScalarConverter::~ScalarConverter(void)
 void	print_char(std::string str)
 {
 	char c = *str.c_str();
-	std::cout << "char: " << c << std::endl;
+	std::cout << "char: '" << c << "'"<< std::endl;
 	std::cout << "int: " << static_cast<int>(c) <<std::endl;
 	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(c) << 'f' << std::endl;
 	std::cout << "double: " << static_cast<double>(c) << std::endl;
@@ -42,7 +42,10 @@ void	print_int(std::string str)
 {
 	int i = std::atoi(str.c_str());
 
-	std::cout << "char: Non displayable" << std::endl;
+	if (i <= 0)
+		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "char : '" << static_cast<char>(i) << "'" << std::endl;
 	std::cout << "int: " << i <<std::endl;
 	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(i) << 'f' << std::endl;
 	std::cout << "double: " << static_cast<double>(i) << std::endl;
@@ -116,13 +119,15 @@ void	display_error(void)
 
 static void	detectType(std::string str)
 {
-	if (std::isalpha(str[0]) || std::isalpha(str[1]))
+	if (std::atol(str.c_str()) < INT_MIN || std::atol(str.c_str()) > INT_MAX || str.size() > 10)
+		display_error();
+	if (std::isprint(str[0]) && !std::isdigit(str[0]))
 	{
 		if (str == "-inff" || str == "+inff" || str == "inff" || str == "-inf" || str == "+inf" || str == "inf")
 			handle_inf(str);
 		else if (str == "nanf" || str == "nan")
 			handle_nan();
-		else if (std::isalpha(str[0]) && str.length() == 1)
+		else if (std::isprint(str[0]) && str.length() == 1)
 			print_char(str);
 		else
 			display_error();

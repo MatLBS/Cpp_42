@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 10:34:55 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/18 11:18:09 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/19 09:54:21 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <cstring>
 # include <cstdlib>
 # include <algorithm>
+
+# define INT_MIN -2147483648
+# define INT_MAX 2147483647
 
 class ScalarConverter {
 
