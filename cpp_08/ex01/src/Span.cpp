@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:42:07 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/18 18:17:28 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/19 10:37:58 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	Span::fill(int nb, int nb2)
 
 int	Span::shortestSpan(void)
 {
-	for(std::vector<int>::iterator it = this->_tab.begin(); it != this->_tab.end(); it++)
-		std::cout << *it << std::endl;
+	// for(std::vector<int>::iterator it = this->_tab.begin(); it != this->_tab.end(); it++)
+	// 	std::cout << *it << std::endl;
 	if (this->_tab.size() == 0 || this->_tab.size() == 1)
 		throw NotEnoughNumbers();
 	int	minDiff = this->_tab[0];

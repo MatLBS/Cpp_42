@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:42:30 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/13 15:00:51 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/20 12:26:31 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ public:
 	Array &	operator=(Array const & src);
 	~Array(void);
 
-	unsigned int	size(void) const;
-	T &			operator[](int index);
+	unsigned int		size(void) const;
+	T &					operator[](int index);
+	const T &			operator[](int index) const;
 
 
 	class IndexOutOfBounds : public std::exception

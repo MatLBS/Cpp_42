@@ -6,12 +6,12 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:41:55 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/18 17:01:23 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/19 10:56:21 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef Span_HPP
-# define Span_HPP
+#ifndef SPAN_HPP
+# define SPAN_HPP
 
 # include <iostream>
 # include <cstring>

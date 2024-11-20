@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 10:46:04 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/07 17:58:09 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/19 10:55:03 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <algorithm>
 # include <stdint.h>
 # include <ctime>
-# include <typeinfo>
 
 class Base
 {

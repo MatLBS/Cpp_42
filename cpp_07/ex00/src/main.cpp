@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:06:55 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/12 13:25:59 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/20 09:49:25 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int main( void ) {
 	std::cout << "min( e, f ) = " << ::min( e, f ) << std::endl;
 	std::cout << "max( e, f ) = " << ::max( e, f ) << std::endl;
 
-	std::cout << std::endl << "max(foo(a), food(b)) = " << ::max(foo(a), foo(b)) << std::endl;
-
+	std::cout << std::endl << "max(foo(a), food(b)) = " << ::max(foo(a), foo(b));
+	std::cout << std::endl << "min(foo(a), food(b)) = " << ::min(foo(a), foo(b)) << std::endl;
 	return 0;
 }

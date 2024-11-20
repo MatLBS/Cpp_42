@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:47:36 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/13 15:03:39 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/20 12:27:07 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 template <typename T>
 Array<T>::Array(void): _len(0) {
-	this->_array = NULL;
+	this->_array = new T[0];
 }
 
 template <typename T>
 Array<T>::Array(unsigned int n): _len(n)
 {
 	this->_array = new T[n];
+	for (unsigned int i = 0; i < n; i++)
+		this->_array[i] = 0;
 }
 
 template <typename T>
@@ -56,6 +58,14 @@ unsigned int Array<T>::size(void) const
 
 template <typename T>
 T& Array<T>::operator[](int index)
+{
+	if (index < 0 || index >= (int)this->size())
+		throw Array::IndexOutOfBounds();
+	return this->_array[index];
+}
+
+template <typename T>
+const	T& Array<T>::operator[](int index) const
 {
 	if (index < 0 || index >= (int)this->size())
 		throw Array::IndexOutOfBounds();
