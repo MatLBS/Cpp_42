@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:44:35 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/20 16:59:45 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:01:14 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 # define BITCOINEXCHANGE_HPP
 
 # include <iostream>
+# include <iomanip>
 # include <cstring>
 # include <map>
 # include <fstream>
 # include <string>
 # include <cstdlib>
+# include <sstream>
+# include <time.h>
+# include <algorithm>
+# include <ctime>
 
 class Bitcoin {
 
@@ -29,7 +34,8 @@ public:
 	// Bitcoin & operator=(Bitcoin const & src);
 	~Bitcoin(void);
 
-	static void	read_input(std::string str, std::map<std::string, double> data);
+	static void	read_input(std::string str, std::map<std::string, double> & data);
+	static void	get_Value(std::string str, std::map<std::string, double> & data);
 
 private:
 
