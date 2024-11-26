@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:52:08 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/20 17:55:37 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/26 10:34:17 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <algorithm>
 # include <stdint.h>
 # include <ctime>
-# include <typeinfo>
 
 template <typename T>
 void	iter(T * adress, int len, void (*f)(T &))

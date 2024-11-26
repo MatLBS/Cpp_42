@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:31:21 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/18 14:57:39 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/26 15:21:37 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ public:
 		public:
 			virtual const char* what() const throw()
 			{
-				return ("Grade is too high");
+				return ("Grade to sign the form is too high");
 			}
 	};
 
@@ -56,7 +56,7 @@ public:
 		public:
 			virtual const char* what() const throw()
 			{
-				return ("Grade is too low");
+				return ("Grade to sign the form is too low");
 			}
 	};
 

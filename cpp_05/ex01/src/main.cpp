@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 15:55:18 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/04 09:45:35 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/26 15:21:57 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,25 @@ int	main(int ac, char **av)
 		std::cout << Dom << std::endl;
 		Dom.promotion();
 		std::cout << Dom << std::endl;
-		Form test("Cerfa 80", 75, 75);
+		Form test("Cerfa 80", -3, 75);
 		std::cout << test << std::endl;
 		Yann.signForm(test);
 	}
 	catch(const  Bureaucrat::GradeTooHighException & e)
 	{
-		std::cout << "The grade is too high" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 	catch(const Bureaucrat::GradeTooLowException & e)
 	{
-		std::cout << "The grade is too low" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 	catch(const Form::GradeTooHighException & e)
 	{
-		std::cout << "The grade to sign the form is too high" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 	catch(const Form::GradeTooLowException & e)
 	{
-		std::cout << "The grade to sign the form is too low" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 	return (0);
 }

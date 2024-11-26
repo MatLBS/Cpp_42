@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 10:34:45 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/19 10:17:29 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/26 10:56:12 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	print_int(std::string str)
 {
 	int i = std::atoi(str.c_str());
 
-	if (i <= 0)
+	if (i <= 0 || i > 127)
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char : '" << static_cast<char>(i) << "'" << std::endl;
@@ -60,7 +60,7 @@ void	print_float(std::string str)
 	while(str[nb + 2])
 		nb++;
 	nb -= str.find(".");
-	if (static_cast<char>(f) < 0)
+	if (static_cast<int>(f) <= 0 || static_cast<int>(f) > 127)
 		std::cout << "char: impossible" << std::endl;
 	else
 		std::cout << "char: '" << static_cast<char>(f) << "'" << std::endl;
@@ -78,7 +78,7 @@ void	print_double(std::string str)
 	while(str[nb + 1])
 		nb++;
 	nb -= str.find(".");
-	if (static_cast<char>(d) < 0)
+	if (static_cast<int>(d) <= 0 || static_cast<int>(d) > 127)
 		std::cout << "char: impossible" << std::endl;
 	else
 		std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
