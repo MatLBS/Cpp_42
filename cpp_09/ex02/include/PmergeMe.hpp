@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 10:15:55 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/26 16:31:20 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/26 16:54:21 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ public:
 			const char *str = it->c_str();
 			if (!std::isdigit(str[0]))
 				throw(std::invalid_argument("Error: bad input => " + *it));
-			if (std::atoi(str) < 0)
+			if (std::atoi(str) < 0 || std::atoi(str) > 2147483647)
 				throw(std::invalid_argument("Error: bad input => " + *it));
 		}
 	}

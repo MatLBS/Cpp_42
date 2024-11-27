@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:42:07 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/19 10:37:58 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/27 13:41:14 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,22 @@ void	Span::addNumber(int nb)
 	this->_len++;
 }
 
-void	Span::fill(int nb, int nb2)
+// void	Span::fill(int nb, int nb2)
+// {
+// 	int	index = nb2 - nb;
+// 	if (index > this->_size)
+// 		throw TooManyNumbers();
+// 	std::vector<int>tmp;
+// 	for (int i = 0; i <= index; i++)
+// 	{
+// 		tmp.push_back(nb);
+// 		nb++;
+// 	}
+// 	this->_tab.insert(this->_tab.end(), tmp.begin(), tmp.end());
+// }
+
+void	Span::fill(std::vector<int>tmp)
 {
-	int	index = nb2 - nb;
-	if (index > this->_size)
-		throw TooManyNumbers();
-	std::vector<int>tmp;
-	for (int i = 0; i <= index; i++)
-	{
-		tmp.push_back(nb);
-		nb++;
-	}
 	this->_tab.insert(this->_tab.end(), tmp.begin(), tmp.end());
 }
 
@@ -75,5 +80,10 @@ int	Span::longestSpan(void)
 	std::vector<int>::iterator smallest = std::min_element(this->_tab.begin(), this->_tab.end());
 	std::vector<int>::iterator biggest = std::max_element(this->_tab.begin(), this->_tab.end());
 	return *biggest - *smallest;
+}
+
+std::vector<int>	Span::getVector(void)
+{
+	return this->_tab;
 }
 

@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:41:55 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/19 10:56:21 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/27 13:40:45 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ public:
 	Span(unsigned int N);
 
 	void	addNumber(int nb);
-	void	fill(int nb, int nb2);
+	// void	fill(int nb, int nb2);
+	void	fill(std::vector<int>tmp);
 	int		shortestSpan();
 	int		longestSpan();
+	std::vector<int>	getVector();
 
 	class TooManyNumbers : public std::exception
 	{

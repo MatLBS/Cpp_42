@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:41:12 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/18 17:47:42 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/27 13:56:45 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main()
 		sp.addNumber(3);
 		sp.addNumber(17);
 		sp.addNumber(9);
-		sp.addNumber(11);
+		sp.addNumber(10);
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
 	}
@@ -69,12 +69,9 @@ int main()
 	Span sp3 = Span(11000);
 	try
 	{
-		sp3.fill(6, 10);
-		// std::cout << sp3._tab.size() << std::endl;
-		// for (int i = 0; i < 11000; i++)
-		// 	sp3.addNumber(rand()%500 + 1);
-		std::cout << sp3.longestSpan() << std::endl;
+		sp3.fill(sp.getVector());
 		std::cout << sp3.shortestSpan() << std::endl;
+		std::cout << sp3.longestSpan() << std::endl;
 	}
 	catch (const Span::TooManyNumbers & e)
 	{
