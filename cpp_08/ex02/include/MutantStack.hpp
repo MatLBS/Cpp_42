@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:41:18 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/19 16:08:56 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:41:21 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <deque>
 # include <list>
 
-template <typename T, class Container = std::deque<T> >
+template <typename T>
 class MutantStack: public std::stack<T> {
 
 public:
@@ -29,7 +29,7 @@ public:
 	MutantStack &	operator=(MutantStack const & src);
 	~MutantStack(void);
 
-	typedef typename Container::iterator iterator;
+	typedef typename std::deque<T>::iterator iterator;
 	iterator begin()
 	{
 		return this->c.begin();

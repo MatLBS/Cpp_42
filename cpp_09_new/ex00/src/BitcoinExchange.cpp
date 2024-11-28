@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:44:23 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/28 15:25:10 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:31:22 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	Bitcoin::get_Value(std::string str, std::map<std::string, double> & data)
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << e.what() << '\n';
+			std::cerr << e.what() << std::endl;
 			continue ;
 		}
 		std::string	value;
@@ -139,7 +139,7 @@ void	Bitcoin::get_Value(std::string str, std::map<std::string, double> & data)
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << e.what() << '\n';
+			std::cerr << e.what() << std::endl;
 		}
 	}
 }

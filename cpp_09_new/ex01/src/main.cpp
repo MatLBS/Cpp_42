@@ -5,31 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/20 14:44:38 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/28 15:17:48 by matle-br         ###   ########.fr       */
+/*   Created: 2024/11/25 11:59:54 by matle-br          #+#    #+#             */
+/*   Updated: 2024/11/26 11:12:28 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/BitcoinExchange.hpp"
+#include "../include/RPN.hpp"
 
 int	main(int ac, char **av)
 {
-	Bitcoin btc;
-	std::map<std::string, double> data;
+	RPN rpn;
+	std::stack<std::string> stack;
 
 	if (ac != 2)
 	{
-		std::cout << "Invalid input, please enter ./btc <include/input.txt>" << std::endl;
+		std::cout << "Invalid input, please enter ./RPN <ex: 8 9 * 9 - 9 - 9 - 4 - 1 + > " << std::endl;
 		return 0;
 	}
-	try
-	{
-		btc.read_input("include/data.csv", btc.getMap());
-		btc.get_Value(av[1], data);
+	try {
+		RPN::fill_stack(av, stack);
+		RPN::check_stack(stack);
+		RPN::run_npm(stack);
+		while (!stack.empty())
+		{
+			std::cout << stack.top() << std::endl;;
+			stack.pop();
+		}
 	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
+	catch(const std::exception & e) {
+		std::cerr << e.what() << std::endl;
 	}
 	return 0;
 }

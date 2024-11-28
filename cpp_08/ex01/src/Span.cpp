@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:42:07 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/27 13:41:14 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:12:19 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,13 @@ void	Span::addNumber(int nb)
 // 	this->_tab.insert(this->_tab.end(), tmp.begin(), tmp.end());
 // }
 
-void	Span::fill(std::vector<int>tmp)
+void	Span::fill(std::vector<int>vec)
 {
-	this->_tab.insert(this->_tab.end(), tmp.begin(), tmp.end());
+	this->_tab.insert(this->_tab.end(), vec.begin(), vec.end());
 }
 
 int	Span::shortestSpan(void)
 {
-	// for(std::vector<int>::iterator it = this->_tab.begin(); it != this->_tab.end(); it++)
-	// 	std::cout << *it << std::endl;
 	if (this->_tab.size() == 0 || this->_tab.size() == 1)
 		throw NotEnoughNumbers();
 	int	minDiff = this->_tab[0];

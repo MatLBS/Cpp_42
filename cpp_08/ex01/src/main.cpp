@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:41:12 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/27 13:56:45 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:13:14 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int main()
 		std::cout << e.what() << std::endl;
 	}
 	std::cout << "___________________________________________" << std::endl << std::endl;
-	std::srand((unsigned int)time(NULL));
 	Span sp3 = Span(11000);
 	try
 	{

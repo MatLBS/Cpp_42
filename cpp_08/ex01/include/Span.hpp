@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:41:55 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/27 13:40:45 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/27 14:03:17 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ public:
 
 	void	addNumber(int nb);
 	// void	fill(int nb, int nb2);
-	void	fill(std::vector<int>tmp);
+	void	fill(std::vector<int>vec);
 	int		shortestSpan();
 	int		longestSpan();
 	std::vector<int>	getVector();
