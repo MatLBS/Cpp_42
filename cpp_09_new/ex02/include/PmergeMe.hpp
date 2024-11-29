@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 10:15:55 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/28 15:53:22 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/29 15:01:09 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,41 +35,32 @@ public:
 	Merge();
 	~Merge();
 
-	template <typename T>
-	static void	fill_array(char **av, T & array)
-	{
-		for (int i = 1; av[i]; i++)
-			array.push_back(std::string(av[i]));
-	}
+	void	fill_array(char **av);
 
-	template <typename T>
-	static void	check_array(T & array)
-	{
-		for(typename T::iterator it = array.begin(); it != array.end(); it++)
-		{
-			const char *str = it->c_str();
-			if (!std::isdigit(str[0]))
-				throw(std::invalid_argument("Error: bad input => " + *it));
-			if (std::atol(str) < 0 || std::atol(str) > 2147483647)
-				throw(std::invalid_argument("Error: bad input => " + *it));
-		}
-	}
+	void	mergeInsertionSortV(void);
+	void	sortVectorPairs(void);
+	void	moveMinimasToPendantV(std::vector<int> &pendant);
+	void	moveMinimasToMainV(std::vector<int> &pendant);
 
-	static std::vector<std::string>	mergeInsertionSort(std::vector<std::string> &vector);
-	static void	mergeInsertionSort(std::deque<std::string> &deque);
-	static void	addSmallest(std::vector<std::string> &vector);
-	static void	binarySearch(std::vector<std::string> &vector);
-	static long	get_time(void);
+	void	mergeInsertionSortD(void);
+
+
+	void	addSmallest(std::vector<int> &vector);
+	void	binarySearch(int target);
+	std::vector<int>	getVec(void);
+	std::deque<int>		getDeq(void);
 
 	long	_timeVectorB;
 	long	_timeDequeB;
 	long	_timeVectorA;
 	long	_timeDequeA;
 
-	static std::vector<std::string>	_finalVector;
-	static std::deque<std::string>	_finalDeque;
-	static std::vector<std::string>	_bigArray;
 private:
+
+	std::vector<int>	_finalVector;
+	std::deque<int>		_finalDeque;
+	// std::vector<int>	_bigArray;
+	// std::vector<int>	_littleArray;
 
 };
 

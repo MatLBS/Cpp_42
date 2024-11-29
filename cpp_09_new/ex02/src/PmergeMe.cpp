@@ -6,63 +6,128 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 10:15:45 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/28 15:53:50 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/29 16:27:28 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/PmergeMe.hpp"
 
-std::vector<std::string> Merge::_finalVector;
-std::deque<std::string> Merge::_finalDeque;
-std::vector<std::string> Merge::_bigArray;
+std::vector<std::string> _finalVector;
+std::deque<std::string> _finalDeque;
+std::vector<std::string> _bigArray;
 
 Merge::Merge(void){}
 
 Merge::~Merge(void){}
 
-long	Merge::get_time(void)
+void	Merge::fill_array(char **av)
 {
-	struct timeval	time;
-
-	if (gettimeofday(&time, NULL) == -1)
+	for (int i = 1; av[i]; i++)
 	{
-		printf("Error with gettimeofday");
-		return (-1);
+		if (!std::isdigit(av[i][0]))
+			throw(std::invalid_argument("Error: bad input => " + std::string(av[i])));
+		if (std::atol(av[i]) < 0 || std::atol(av[i]) > 2147483647)
+			throw(std::invalid_argument("Error: bad input => " + std::string(av[i])));
+		this->_finalDeque.push_back(std::atoi(av[i]));
+		this->_finalVector.push_back(std::atoi(av[i]));
 	}
-	return (time.tv_sec * 1000000L + time.tv_usec);
 }
 
-std::vector<std::string>	Merge::mergeInsertionSort(std::vector<std::string> &vector)
+void	Merge::sortVectorPairs(void)
 {
-	if (vector.size() <= 1)
-		return vector;
-	std::vector<std::string>	bigArray;
-	for (int i = 0; i < (int)vector.size() - 1; i++)
+	for (int i = 0; i < (int)_finalVector.size() - 1; i++)
 	{
-		if (vector[i] < vector[i + 1] && i % 2 == 0)
-			std::swap(vector[i], vector[i + 1]);
-		if (i % 2 == 0)
+		std::cout << "i = " << _finalVector[i] << std::endl;
+		std::cout << "i + 1 = " << _finalVector[i + 1] << std::endl;
+		if (_finalVector[i] > _finalVector[i + 1] && i % 2 == 0)
 		{
-			bigArray.push_back(vector[i]);
-			// std::vector<std::string>::iterator it = std::find(vector.begin(), vector.end(), vector[i]);
-			// vector.erase(it);
+			std::cout << "bonjour" << std::endl;
+			std::swap(_finalVector[i], _finalVector[i + 1]);
 		}
 	}
-	mergeInsertionSort(bigArray);
-	return bigArray;
 }
 
-void	Merge::addSmallest(std::vector<std::string> &vector)
+void	Merge::moveMinimasToPendantV(std::vector<int> &pendant)
 {
-	std::vector<std::string>::iterator smallest = std::min_element(Merge::_finalVector.begin(), Merge::_finalVector.end());
-	std::cout << "smallest = " << *smallest << std::endl;
-	std::vector<std::string>::iterator it = std::find(vector.begin(), vector.end(), *smallest);
-	int index = std::distance(vector.begin(), it);
-	_finalVector.push_back(vector[index + 1]);
-	// vector.erase(it + 1);
+	for (std::vector<int>::iterator it = _finalVector.begin(); it != _finalVector.end(); it++)
+	{
+		pendant.push_back(*it);
+		it = _finalVector.erase(it);
+	}
 }
 
-void	Merge::binarySearch(std::vector<std::string> &vector)
+void	Merge::moveMinimasToMainV(std::vector<int> &pendant)
 {
-	
+	for (std::vector<int>::iterator it = pendant.begin(); it != pendant.end();)
+	{
+		int	low = 0, middle = 0, high = high = _finalVector.size() - 1, target = *it;
+		while (low <= high)
+		{
+			middle = low + (high - low) / 2;
+			int	value = _finalVector[middle];
+			if (value < target)
+				low = middle + 1;
+			else if (value > target)
+				high = middle - 1;
+		}
+		_finalVector.insert(_finalVector.begin() + low, target);
+		it = pendant.erase(it);
+	}
+}
+
+void	Merge::mergeInsertionSortV(void)
+{
+	sortVectorPairs();
+	if (_finalVector.size() <= 2)
+		return ;
+
+	std::vector<int>	pendant;
+
+	moveMinimasToPendantV(pendant);
+
+	mergeInsertionSortV();
+
+	std::cout << "FinalVector: ";
+	for(std::vector<int>::iterator it = _finalVector.begin(); it != _finalVector.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+	std::cout << "Pendant: ";
+	for(std::vector<int>::iterator it = pendant.begin(); it != pendant.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+	moveMinimasToMainV(pendant);
+	std::cout << "FinalVector: ";
+	for(std::vector<int>::iterator it = _finalVector.begin(); it != _finalVector.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+	return ;
+}
+
+// void	Merge::binarySearch(int target)
+// {
+// 	int	low = 0;
+// 	int	high = Merge::_finalVector.size() - 1;
+
+// 	while (low <= high)
+// 	{
+// 		int	middle = low +(high - low) / 2;
+// 		int	value = std::atoi(Merge::_finalVector[middle].c_str());
+// 		std::cout << "middle = " << value << std::endl;
+// 		if (value < target)
+// 			low = middle + 1;
+// 		else if (value > target)
+// 			high = middle - 1;
+// 		else
+// 			return ;
+// 	}
+// }
+
+std::vector<int>	Merge::getVec(void)
+{
+	return this->_finalVector;
+}
+
+std::deque<int>	Merge::getDeq(void)
+{
+	return this->_finalDeque;
 }

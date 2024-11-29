@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 10:15:31 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/28 15:52:51 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/29 16:19:41 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,31 @@
 int	main(int ac, char **av)
 {
 	Merge	merge;
-	std::vector<std::string> vec;
-	std::deque<std::string> deque;
+	std::deque<int> deque;
 	if (ac > 1)
 	{
-		Merge::fill_array(av, vec);
-		Merge::fill_array(av, deque);
 		try {
-			Merge::check_array(vec);
-			Merge::check_array(deque);
+			merge.fill_array(av);
+			std::vector<int> vec = merge.getVec();
 			std::cout << "Before: ";
-			for(std::vector<std::string>::iterator it = vec.begin(); it != vec.end(); it++)
+			for(std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
 				std::cout << *it << " ";
 			std::cout << std::endl;
 			// merge._timeVectorB = Merge::get_time();
-			Merge::_finalVector = Merge::mergeInsertionSort(vec);
-			Merge::addSmallest(vec);
-			Merge::binarySearch(vec);
-			std::cout << "finalVector = ";
-			for(std::vector<std::string>::iterator it = Merge::_finalVector.begin(); it != Merge::_finalVector.end(); it++)
+			merge.mergeInsertionSortV();
+			std::vector<int> new_vec = merge.getVec();
+			std::cout << "After: ";
+			for(std::vector<int>::iterator it = new_vec.begin(); it != new_vec.end(); it++)
 				std::cout << *it << " ";
 			std::cout << std::endl;
 			// merge._timeVectorA = Merge::get_time();
 			// merge._timeDequeB = Merge::get_time();
 			// Merge::mergeSort(deque);
 			// merge._timeDequeA = Merge::get_time();
-			std::cout << "After: ";
-			for(std::vector<std::string>::iterator it = vec.begin(); it != vec.end(); it++)
-				std::cout << *it << " ";
-			std::cout << std::endl;
+			// std::cout << "After: ";
+			// for(std::vector<std::string>::iterator it = vec.begin(); it != vec.end(); it++)
+			// 	std::cout << *it << " ";
+			// std::cout << std::endl;
 			// std::cout << "FinalVector: ";
 			// for(std::vector<std::string>::iterator it = Merge::_finalVector.begin(); it != Merge::_finalVector.end(); it++)
 			// 	std::cout << *it << " ";
