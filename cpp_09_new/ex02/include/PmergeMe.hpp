@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 10:15:55 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/29 15:01:09 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/12/01 17:13:42 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ public:
 	~Merge();
 
 	void	fill_array(char **av);
+	int		jacobsthal(int nb);
 
 	void	mergeInsertionSortV(void);
 	void	sortVectorPairs(void);
@@ -43,17 +44,15 @@ public:
 	void	moveMinimasToMainV(std::vector<int> &pendant);
 
 	void	mergeInsertionSortD(void);
+	void	sortDequePairs(void);
+	void	moveMinimasToPendantD(std::deque<int> &pendant);
+	void	moveMinimasToMainD(std::deque<int> &pendant);
 
-
-	void	addSmallest(std::vector<int> &vector);
-	void	binarySearch(int target);
 	std::vector<int>	getVec(void);
 	std::deque<int>		getDeq(void);
 
-	long	_timeVectorB;
-	long	_timeDequeB;
-	long	_timeVectorA;
-	long	_timeDequeA;
+	double	_timeVector;
+	double	_timeDeque;
 
 private:
 

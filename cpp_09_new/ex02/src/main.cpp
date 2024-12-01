@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 10:15:31 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/29 16:19:41 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/12/01 17:40:59 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,37 +15,30 @@
 int	main(int ac, char **av)
 {
 	Merge	merge;
-	std::deque<int> deque;
+	clock_t	start;
 	if (ac > 1)
 	{
 		try {
 			merge.fill_array(av);
 			std::vector<int> vec = merge.getVec();
+			std::deque<int> deque = merge.getDeq();
 			std::cout << "Before: ";
 			for(std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
 				std::cout << *it << " ";
 			std::cout << std::endl;
-			// merge._timeVectorB = Merge::get_time();
+			start = clock();
 			merge.mergeInsertionSortV();
+			merge._timeVector = (double)((clock() - start) * 100000.0 / CLOCKS_PER_SEC);
+			start = clock();
+			merge.mergeInsertionSortD();
+			merge._timeDeque = (double)((clock() - start) * 100000.0 / CLOCKS_PER_SEC);
 			std::vector<int> new_vec = merge.getVec();
 			std::cout << "After: ";
 			for(std::vector<int>::iterator it = new_vec.begin(); it != new_vec.end(); it++)
 				std::cout << *it << " ";
 			std::cout << std::endl;
-			// merge._timeVectorA = Merge::get_time();
-			// merge._timeDequeB = Merge::get_time();
-			// Merge::mergeSort(deque);
-			// merge._timeDequeA = Merge::get_time();
-			// std::cout << "After: ";
-			// for(std::vector<std::string>::iterator it = vec.begin(); it != vec.end(); it++)
-			// 	std::cout << *it << " ";
-			// std::cout << std::endl;
-			// std::cout << "FinalVector: ";
-			// for(std::vector<std::string>::iterator it = Merge::_finalVector.begin(); it != Merge::_finalVector.end(); it++)
-			// 	std::cout << *it << " ";
-			// std::cout << std::endl;
-			// std::cout << "Time to process a range of " << vec.size() << " elements with std::vector : " << (merge._timeVectorA - merge._timeVectorB) << " us" << std::endl;
-			// std::cout << "Time to process a range of " << deque.size() << " elements with std::deque : " << (merge._timeDequeA - merge._timeDequeB) << " us" << std::endl;
+			std::cout << "Time to process a range of " << vec.size() << " elements with std::vector : " << merge._timeVector << " us" << std::endl;
+			std::cout << "Time to process a range of " << deque.size() << " elements with std::deque : " << merge._timeDeque << " us" << std::endl;
 		}
 		catch (const std::exception & e) {
 			std::cerr << e.what() << std::endl;

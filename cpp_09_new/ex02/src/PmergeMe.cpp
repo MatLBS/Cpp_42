@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 10:15:45 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/29 16:27:28 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/12/01 18:40:35 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,19 @@ void	Merge::fill_array(char **av)
 	}
 }
 
+int	Merge::jacobsthal(int nb)
+{
+	if (nb == 0 || nb == -1)
+		return 1;
+	return (jacobsthal(nb - 1) + 2 * jacobsthal(nb - 2));
+}
+
 void	Merge::sortVectorPairs(void)
 {
 	for (int i = 0; i < (int)_finalVector.size() - 1; i++)
 	{
-		std::cout << "i = " << _finalVector[i] << std::endl;
-		std::cout << "i + 1 = " << _finalVector[i + 1] << std::endl;
 		if (_finalVector[i] > _finalVector[i + 1] && i % 2 == 0)
-		{
-			std::cout << "bonjour" << std::endl;
 			std::swap(_finalVector[i], _finalVector[i + 1]);
-		}
 	}
 }
 
@@ -58,9 +60,18 @@ void	Merge::moveMinimasToPendantV(std::vector<int> &pendant)
 
 void	Merge::moveMinimasToMainV(std::vector<int> &pendant)
 {
-	for (std::vector<int>::iterator it = pendant.begin(); it != pendant.end();)
+	std::cout << "pendant = ";
+	for (std::vector<int>::iterator it = pendant.begin(); it != pendant.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+	int	nb = 0, other_nb = 1, pendant_size = pendant.size();
+	while (pendant_size > 0)
 	{
-		int	low = 0, middle = 0, high = high = _finalVector.size() - 1, target = *it;
+		int	jacob = jacobsthal(nb) > (int)pendant.size() ? pendant.size() : jacobsthal(nb);
+		// std::cout << "jacob = " << jacob << std::endl;
+		// std::cout << "other_nb = " << other_nb << std::endl;
+		int	low = 0, middle = 0, high = high = _finalVector.size() - 1, target = pendant[jacob - other_nb];
+		// std::cout << "target = " << target << std::endl;
 		while (low <= high)
 		{
 			middle = low + (high - low) / 2;
@@ -71,7 +82,14 @@ void	Merge::moveMinimasToMainV(std::vector<int> &pendant)
 				high = middle - 1;
 		}
 		_finalVector.insert(_finalVector.begin() + low, target);
-		it = pendant.erase(it);
+		pendant_size--;
+		if (jacobsthal(nb) == 1 || other_nb == (jacobsthal(nb) - jacobsthal(nb - 1)))
+		{
+			nb++;
+			other_nb = 1;
+		}
+		else
+			other_nb++;
 	}
 }
 
@@ -80,47 +98,79 @@ void	Merge::mergeInsertionSortV(void)
 	sortVectorPairs();
 	if (_finalVector.size() <= 2)
 		return ;
-
 	std::vector<int>	pendant;
 
 	moveMinimasToPendantV(pendant);
 
 	mergeInsertionSortV();
 
-	std::cout << "FinalVector: ";
-	for(std::vector<int>::iterator it = _finalVector.begin(); it != _finalVector.end(); it++)
-		std::cout << *it << " ";
-	std::cout << std::endl;
-	std::cout << "Pendant: ";
-	for(std::vector<int>::iterator it = pendant.begin(); it != pendant.end(); it++)
-		std::cout << *it << " ";
-	std::cout << std::endl;
 	moveMinimasToMainV(pendant);
-	std::cout << "FinalVector: ";
-	for(std::vector<int>::iterator it = _finalVector.begin(); it != _finalVector.end(); it++)
-		std::cout << *it << " ";
-	std::cout << std::endl;
 	return ;
 }
 
-// void	Merge::binarySearch(int target)
-// {
-// 	int	low = 0;
-// 	int	high = Merge::_finalVector.size() - 1;
+void	Merge::sortDequePairs(void)
+{
+	for (int i = 0; i < (int)_finalDeque.size() - 1; i++)
+	{
+		if (_finalDeque[i] > _finalDeque[i + 1] && i % 2 == 0)
+			std::swap(_finalDeque[i], _finalDeque[i + 1]);
+	}
+}
 
-// 	while (low <= high)
-// 	{
-// 		int	middle = low +(high - low) / 2;
-// 		int	value = std::atoi(Merge::_finalVector[middle].c_str());
-// 		std::cout << "middle = " << value << std::endl;
-// 		if (value < target)
-// 			low = middle + 1;
-// 		else if (value > target)
-// 			high = middle - 1;
-// 		else
-// 			return ;
-// 	}
-// }
+void	Merge::moveMinimasToPendantD(std::deque<int> &pendant)
+{
+	for (std::deque<int>::iterator it = _finalDeque.begin(); it != _finalDeque.end();)
+	{
+		pendant.push_back(*it);
+		it = _finalDeque.erase(it);
+	}
+}
+
+void	Merge::moveMinimasToMainD(std::deque<int> &pendant)
+{
+	int	nb = 0, other_nb = 1, pendant_size = pendant.size();
+		while (pendant_size > 0)
+	{
+		int	jacob = jacobsthal(nb) > (int)pendant.size() ? pendant.size() : jacobsthal(nb);
+		// std::cout << "jacob = " << jacob << std::endl;
+		// std::cout << "other_nb = " << other_nb << std::endl;
+		int	low = 0, middle = 0, high = high = _finalDeque.size() - 1, target = pendant[jacob - other_nb];
+		// std::cout << "target = " << target << std::endl;
+		while (low <= high)
+		{
+			middle = low + (high - low) / 2;
+			int	value = _finalDeque[middle];
+			if (value < target)
+				low = middle + 1;
+			else if (value > target)
+				high = middle - 1;
+		}
+		_finalDeque.insert(_finalDeque.begin() + low, target);
+		pendant_size--;
+		if (jacobsthal(nb) == 1 || other_nb == (jacobsthal(nb) - jacobsthal(nb - 1)))
+		{
+			nb++;
+			other_nb = 1;
+		}
+		else
+			other_nb++;
+	}
+}
+
+void	Merge::mergeInsertionSortD(void)
+{
+	sortDequePairs();
+	if (_finalDeque.size() <= 2)
+		return ;
+	std::deque<int>	pendant;
+
+	moveMinimasToPendantD(pendant);
+
+	mergeInsertionSortD();
+
+	moveMinimasToMainD(pendant);
+	return ;
+}
 
 std::vector<int>	Merge::getVec(void)
 {
