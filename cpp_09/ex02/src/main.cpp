@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 10:15:31 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/26 16:35:10 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/12/02 10:07:39 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,30 @@
 int	main(int ac, char **av)
 {
 	Merge	merge;
-	std::vector<std::string> vec;
-	std::deque<std::string> deque;
+	clock_t	start;
 	if (ac > 1)
 	{
-		Merge::fill_array(av, vec);
-		Merge::fill_array(av, deque);
 		try {
-			Merge::check_array(vec);
-			Merge::check_array(deque);
-			std::cout << "Before: ";
-			for(std::vector<std::string>::iterator it = vec.begin(); it != vec.end(); it++)
-				std::cout << *it << " ";
+			merge.fill_array(av);
+			std::vector<int> vec = merge.getVec();
+			std::deque<int> deque = merge.getDeq();
+			std::cout << BLANC << "Before: " << RESET;
+			for(std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
+				std::cout << BLEU << *it << " " << RESET;
 			std::cout << std::endl;
-			merge._timeVectorB = Merge::get_time();
-			Merge::mergeSort(vec);
-			merge._timeVectorA = Merge::get_time();
-			merge._timeDequeB = Merge::get_time();
-			Merge::mergeSort(deque);
-			merge._timeDequeA = Merge::get_time();
-			std::cout << "After: ";
-			for(std::vector<std::string>::iterator it = vec.begin(); it != vec.end(); it++)
-				std::cout << *it << " ";
+			start = clock();
+			merge.mergeInsertionSortV();
+			merge._timeVector = (double)((clock() - start) * 100000.0 / CLOCKS_PER_SEC);
+			start = clock();
+			merge.mergeInsertionSortD();
+			merge._timeDeque = (double)((clock() - start) * 100000.0 / CLOCKS_PER_SEC);
+			std::vector<int> new_vec = merge.getVec();
+			std::cout << BLANC << "After: " << RESET;
+			for(std::vector<int>::iterator it = new_vec.begin(); it != new_vec.end(); it++)
+				std::cout << BLEU << *it << " " << RESET;
 			std::cout << std::endl;
-			std::cout << "Time to process a range of " << vec.size() << " elements with std::vector : " << (merge._timeVectorA - merge._timeVectorB) << " us" << std::endl;
-			std::cout << "Time to process a range of " << deque.size() << " elements with std::deque : " << (merge._timeDequeA - merge._timeDequeB) << " us" << std::endl;
+			std::cout << "Time to process a range of " << ROUGE << vec.size() << RESET << " elements with std::vector : " << VERT << merge._timeVector  << RESET << " us" << std::endl;
+			std::cout << "Time to process a range of " << ROUGE << deque.size() << RESET << " elements with std::deque : " << VERT <<  merge._timeDeque << RESET << " us" << std::endl;
 		}
 		catch (const std::exception & e) {
 			std::cerr << e.what() << std::endl;

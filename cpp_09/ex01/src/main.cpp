@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:59:54 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/26 11:12:28 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/12/02 09:38:38 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int ac, char **av)
 {
 	RPN rpn;
-	std::stack<std::string> stack;
 
 	if (ac != 2)
 	{
@@ -23,13 +22,13 @@ int	main(int ac, char **av)
 		return 0;
 	}
 	try {
-		RPN::fill_stack(av, stack);
-		RPN::check_stack(stack);
-		RPN::run_npm(stack);
-		while (!stack.empty())
+		rpn.fill_stack(av, rpn.getStack());
+		rpn.check_stack(rpn.getStack());
+		rpn.run_npm(rpn.getStack());
+		while (!rpn.getStack().empty())
 		{
-			std::cout << stack.top() << std::endl;;
-			stack.pop();
+			std::cout << rpn.getStack().top() << std::endl;;
+			rpn.getStack().pop();
 		}
 	}
 	catch(const std::exception & e) {

@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:00:14 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/25 15:32:21 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/12/02 09:38:03 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,20 @@ class RPN {
 public:
 
 	RPN(void);
+	RPN(RPN const & copy);
+	RPN & operator=(RPN const & src);
 	~RPN(void);
 
-	static void	fill_stack(char **av, std::stack<std::string> & stack);
-	static void	check_stack(std::stack<std::string> & stack);
-	static void	run_npm(std::stack<std::string> & stack);
+	void	fill_stack(char **av, std::stack<std::string> & stack);
+	void	check_stack(std::stack<std::string> & stack);
+	void	run_npm(std::stack<std::string> & stack);
+	std::stack<std::string> & getStack();
 
 private:
 
-	static int	_nbSign;
-	static int	_nbNumber;
+	int	_nbSign;
+	int	_nbNumber;
+	std::stack<std::string> _stack;
 
 };
 

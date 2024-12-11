@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 10:15:45 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/26 16:41:24 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/12/02 10:14:08 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,121 +16,158 @@ Merge::Merge(void){}
 
 Merge::~Merge(void){}
 
-long	Merge::get_time(void)
+void	Merge::fill_array(char **av)
 {
-	struct timeval	time;
-
-	if (gettimeofday(&time, NULL) == -1)
+	for (int i = 1; av[i]; i++)
 	{
-		printf("Error with gettimeofday");
-		return (-1);
-	}
-	return (time.tv_sec * 1000000L + time.tv_usec);
-}
-
-void	merge(std::vector<std::string> &leftArray, std::vector<std::string> &rightArray, std::vector<std::string> &vector)
-{
-	int	leftSize = vector.size() / 2;
-	int	rightSize = vector.size() - leftSize;
-	int	r = 0, l = 0, i = 0;
-
-	while(l < leftSize && r < rightSize)
-	{
-		if (std::atoi(leftArray[l].c_str()) < std::atoi(rightArray[r].c_str())) {
-			vector[i] = leftArray[l];
-			i++;
-			l++;
-		}
-		else {
-			vector[i] = rightArray[r];
-			r++;
-			i++;
-		}
-	}
-	while (l < leftSize)
-	{
-		vector[i] = leftArray[l];
-		l++;
-		i++;
-	}
-	while (r < rightSize)
-	{
-		vector[i] = rightArray[r];
-		r++;
-		i++;
+		if (!std::isdigit(av[i][0]))
+			throw(std::invalid_argument("Error: bad input => " + std::string(av[i])));
+		if (std::atol(av[i]) < 0 || std::atol(av[i]) > 2147483647)
+			throw(std::invalid_argument("Error: bad input => " + std::string(av[i])));
+		this->_finalDeque.push_back(std::atoi(av[i]));
+		this->_finalVector.push_back(std::atoi(av[i]));
 	}
 }
 
-void	Merge::mergeSort(std::vector<std::string> &vector)
+int	Merge::jacobsthal(int nb)
 {
-	int	length = vector.size();
-	if (length <= 1)
-		return ;
-	int	middle = length / 2;
-	std::vector<std::string>	leftArray;
-	std::vector<std::string>	rightArray;
-	for (int i = 0; i < length; i++)
+	if (nb == 0 || nb == -1)
+		return 1;
+	return (jacobsthal(nb - 1) + 2 * jacobsthal(nb - 2));
+}
+
+void	Merge::sortVectorPairs(void)
+{
+	for (int i = 0; i < (int)_finalVector.size() - 1; i++)
 	{
-		if (i < middle)
-			leftArray.push_back(vector[i]);
+		if (_finalVector[i] > _finalVector[i + 1] && i % 2 == 0)
+			std::swap(_finalVector[i], _finalVector[i + 1]);
+	}
+}
+
+void	Merge::moveMinimasToPendantV(std::vector<int> &pendant)
+{
+	for (std::vector<int>::iterator it = _finalVector.begin(); it != _finalVector.end(); it++)
+	{
+		if((it) - 1 == _finalVector.end())
+			break ;
+		pendant.push_back(*it);
+		it = _finalVector.erase(it);
+	}
+}
+
+void	Merge::moveMinimasToMainV(std::vector<int> &pendant)
+{
+	int	nb = 0, other_nb = 1, pendant_size = pendant.size();
+	while (pendant_size > 0)
+	{
+		int	jacob = jacobsthal(nb) > (int)pendant.size() ? pendant.size() : jacobsthal(nb);
+		int	low = 0, middle = 0, high = high = _finalVector.size() - 1, target = pendant[jacob - other_nb];
+		while (low <= high)
+		{
+			middle = low + (high - low) / 2;
+			int	value = _finalVector[middle];
+			if (value < target)
+				low = middle + 1;
+			else if (value > target)
+				high = middle - 1;
+		}
+		_finalVector.insert(_finalVector.begin() + low, target);
+		pendant_size--;
+		if (jacobsthal(nb) == 1 || other_nb == (jacobsthal(nb) - jacobsthal(nb - 1)))
+		{
+			nb++;
+			other_nb = 1;
+		}
 		else
-			rightArray.push_back(vector[i]);
-	}
-	mergeSort(leftArray);
-	mergeSort(rightArray);
-	merge(leftArray, rightArray, vector);
-}
-
-void	merge(std::deque<std::string> &leftArray, std::deque<std::string> &rightArray, std::deque<std::string> &list)
-{
-	int	leftSize = list.size() / 2;
-	int	rightSize = list.size() - leftSize;
-	int	r = 0, l = 0, i = 0;
-
-	while(l < leftSize && r < rightSize)
-	{
-		if (std::atoi(leftArray[l].c_str()) < std::atoi(rightArray[r].c_str())) {
-			list[i] = leftArray[l];
-			i++;
-			l++;
-		}
-		else {
-			list[i] = rightArray[r];
-			r++;
-			i++;
-		}
-	}
-	while (l < leftSize)
-	{
-		list[i] = leftArray[l];
-		l++;
-		i++;
-	}
-	while (r < rightSize)
-	{
-		list[i] = rightArray[r];
-		r++;
-		i++;
+			other_nb++;
 	}
 }
 
-void	Merge::mergeSort(std::deque<std::string> &deque)
+void	Merge::mergeInsertionSortV(void)
 {
-	int	length = deque.size();
-	if (length <= 1)
+	sortVectorPairs();
+	if (_finalVector.size() <= 2)
 		return ;
-	int	middle = length / 2;
-	std::deque<std::string>	leftArray;
-	std::deque<std::string>	rightArray;
-	for (int i = 0; i < length; i++)
-	{
-		if (i < middle)
-			leftArray.push_back(deque[i]);
-		else
-			rightArray.push_back(deque[i]);
-	}
-	mergeSort(leftArray);
-	mergeSort(rightArray);
-	merge(leftArray, rightArray, deque);
+	std::vector<int>	pendant;
+
+	moveMinimasToPendantV(pendant);
+
+	mergeInsertionSortV();
+
+	moveMinimasToMainV(pendant);
+	return ;
 }
 
+void	Merge::sortDequePairs(void)
+{
+	for (int i = 0; i < (int)_finalDeque.size() - 1; i++)
+	{
+		if (_finalDeque[i] > _finalDeque[i + 1] && i % 2 == 0)
+			std::swap(_finalDeque[i], _finalDeque[i + 1]);
+	}
+}
+
+void	Merge::moveMinimasToPendantD(std::deque<int> &pendant)
+{
+	for (std::deque<int>::iterator it = _finalDeque.begin(); it != _finalDeque.end();)
+	{
+		if((it) - 1 == _finalDeque.end())
+			break ;
+		pendant.push_back(*it);
+		it = _finalDeque.erase(it);
+	}
+}
+
+void	Merge::moveMinimasToMainD(std::deque<int> &pendant)
+{
+	int	nb = 0, other_nb = 1, pendant_size = pendant.size();
+		while (pendant_size > 0)
+	{
+		int	jacob = jacobsthal(nb) > (int)pendant.size() ? pendant.size() : jacobsthal(nb);
+		int	low = 0, middle = 0, high = high = _finalDeque.size() - 1, target = pendant[jacob - other_nb];
+		while (low <= high)
+		{
+			middle = low + (high - low) / 2;
+			int	value = _finalDeque[middle];
+			if (value < target)
+				low = middle + 1;
+			else if (value > target)
+				high = middle - 1;
+		}
+		_finalDeque.insert(_finalDeque.begin() + low, target);
+		pendant_size--;
+		if (jacobsthal(nb) == 1 || other_nb == (jacobsthal(nb) - jacobsthal(nb - 1)))
+		{
+			nb++;
+			other_nb = 1;
+		}
+		else
+			other_nb++;
+	}
+}
+
+void	Merge::mergeInsertionSortD(void)
+{
+	sortDequePairs();
+	if (_finalDeque.size() <= 2)
+		return ;
+	std::deque<int>	pendant;
+
+	moveMinimasToPendantD(pendant);
+
+	mergeInsertionSortD();
+
+	moveMinimasToMainD(pendant);
+	return ;
+}
+
+std::vector<int>	Merge::getVec(void)
+{
+	return this->_finalVector;
+}
+
+std::deque<int>	Merge::getDeq(void)
+{
+	return this->_finalDeque;
+}

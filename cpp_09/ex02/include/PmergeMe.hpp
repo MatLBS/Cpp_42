@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 10:15:55 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/26 16:54:21 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/12/02 10:05:19 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@
 # include <deque>
 #include <sys/time.h>
 
+# define BLEU "\033[34m"
+# define BLANC "\033[37m"
+# define ROUGE "\033[31m"
+# define VERT "\033[32m"
+# define RESET "\033[0m"
+
 class Merge {
 
 public:
@@ -35,37 +41,29 @@ public:
 	Merge();
 	~Merge();
 
-	template <typename T>
-	static void	fill_array(char **av, T & array)
-	{
-		for (int i = 1; av[i]; i++)
-			array.push_back(std::string(av[i]));
-	}
+	void	fill_array(char **av);
+	int		jacobsthal(int nb);
 
-	template <typename T>
-	static void	check_array(T & array)
-	{
-		for(typename T::iterator it = array.begin(); it != array.end(); it++)
-		{
-			const char *str = it->c_str();
-			if (!std::isdigit(str[0]))
-				throw(std::invalid_argument("Error: bad input => " + *it));
-			if (std::atoi(str) < 0 || std::atoi(str) > 2147483647)
-				throw(std::invalid_argument("Error: bad input => " + *it));
-		}
-	}
+	void	mergeInsertionSortV(void);
+	void	sortVectorPairs(void);
+	void	moveMinimasToPendantV(std::vector<int> &pendant);
+	void	moveMinimasToMainV(std::vector<int> &pendant);
 
-	static void	mergeSort(std::vector<std::string> &vector);
-	static void	mergeSort(std::deque<std::string> &deque);
-	static long	get_time(void);
+	void	mergeInsertionSortD(void);
+	void	sortDequePairs(void);
+	void	moveMinimasToPendantD(std::deque<int> &pendant);
+	void	moveMinimasToMainD(std::deque<int> &pendant);
 
-	long	_timeVectorB;
-	long	_timeDequeB;
-	long	_timeVectorA;
-	long	_timeDequeA;
+	std::vector<int>	getVec(void);
+	std::deque<int>		getDeq(void);
+
+	double	_timeVector;
+	double	_timeDeque;
 
 private:
 
+	std::vector<int>	_finalVector;
+	std::deque<int>		_finalDeque;
 
 };
 

@@ -6,13 +6,27 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:44:23 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/28 15:25:10 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/12/02 10:29:31 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/BitcoinExchange.hpp"
 
 Bitcoin::Bitcoin(void){};
+
+Bitcoin::Bitcoin(Bitcoin const & copy)
+{
+	*this = copy;
+}
+
+Bitcoin &	Bitcoin::operator=(Bitcoin const & src)
+{
+	if (this != &src)
+	{
+		this->_map = src._map;
+	}
+	return (*this);
+}
 
 Bitcoin::~Bitcoin(void){};
 
@@ -113,6 +127,8 @@ void	Bitcoin::get_Value(std::string str, std::map<std::string, double> & data)
 	if (!infile)
 		throw(std::invalid_argument("Failed to open the infile."));
 	std::getline(infile, first);
+	if (first.empty())
+		throw(std::invalid_argument("The file is empty."));
 	while (infile)
 	{
 		std::getline(infile, line);
@@ -122,7 +138,7 @@ void	Bitcoin::get_Value(std::string str, std::map<std::string, double> & data)
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << e.what() << '\n';
+			std::cerr << e.what() << std::endl;
 			continue ;
 		}
 		std::string	value;
@@ -139,12 +155,12 @@ void	Bitcoin::get_Value(std::string str, std::map<std::string, double> & data)
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << e.what() << '\n';
+			std::cerr << e.what() << std::endl;
 		}
 	}
 }
 
 std::map<std::string, double> & Bitcoin::getMap()
 {
-	return this->map;
+	return this->_map;
 }

@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:44:38 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/28 15:17:48 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:28:02 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int ac, char **av)
 {
 	Bitcoin btc;
-	std::map<std::string, double> data;
 
 	if (ac != 2)
 	{
@@ -25,11 +24,11 @@ int	main(int ac, char **av)
 	try
 	{
 		btc.read_input("include/data.csv", btc.getMap());
-		btc.get_Value(av[1], data);
+		btc.get_Value(av[1], btc.getMap());
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what() << std::endl;
 	}
 	return 0;
 }

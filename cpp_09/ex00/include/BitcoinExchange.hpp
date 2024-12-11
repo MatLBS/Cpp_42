@@ -6,7 +6,7 @@
 /*   By: matle-br <matle-br@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:44:35 by matle-br          #+#    #+#             */
-/*   Updated: 2024/11/28 15:25:07 by matle-br         ###   ########.fr       */
+/*   Updated: 2024/12/02 09:07:30 by matle-br         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ class Bitcoin {
 public:
 
 	Bitcoin(void);
-	// Bitcoin(Bitcoin const & copy);
-	// Bitcoin & operator=(Bitcoin const & src);
+	Bitcoin(Bitcoin const & copy);
+	Bitcoin & operator=(Bitcoin const & src);
 	~Bitcoin(void);
 
 	static void	read_input(std::string str, std::map<std::string, double> & data);
@@ -40,7 +40,7 @@ public:
 
 private:
 
-	std::map<std::string, double>	map;
+	std::map<std::string, double>	_map;
 
 };
 
